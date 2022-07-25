@@ -17,13 +17,20 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Card::make()->schema([
+                    Forms\Components\TextInput::make("name")->label("Name"),
+                    Forms\Components\TextInput::make("email")->label("Email"),
+                    Forms\Components\TextInput::make("password")->password()->label("Password")->columnSpan(2),
+                ])->columns([
+                    "sm"=>2,
+                    "lg"=>null
+                ]),
             ]);
     }
 
@@ -31,7 +38,9 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make("id")->label("ID"),
+                Tables\Columns\TextColumn::make('name')->label('Name'),
+                Tables\Columns\TextColumn::make('email')->label('Email'),
             ])
             ->filters([
                 //
@@ -43,14 +52,14 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -58,5 +67,5 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
+    }
 }
