@@ -11,4 +11,12 @@ class Student extends Model
     use HasFactory,SoftDeletes;
     protected $fillable = ['name', 'school_id'];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->order = Student::select("id","school_id")->where('school_id', $model->school_id)->count() + 1;
+        });
+    }
+
 }
