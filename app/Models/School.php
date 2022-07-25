@@ -10,4 +10,10 @@ class School extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = ['name'];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
 }
