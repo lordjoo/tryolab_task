@@ -1,5 +1,13 @@
 # Troylab BK Task 
 
+### Installation 
+```
+composer install 
+php artisan jwt:seceret
+php artisan jwt:generate-certs
+```
+
+
 ## API Endpoints Table 
 | Endpoint | Body |
 | -------- | ---- |
