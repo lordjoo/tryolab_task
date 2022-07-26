@@ -9,7 +9,11 @@ class StudentFactory extends Factory
 {
     public function definition()
     {
-        $school_id = School::select('id')->inRandomOrder()->first()->id;
+        $school = School::select('id')->inRandomOrder()->first();
+        if (! $school) {
+            $school = School::factory()->create();
+        }
+        $school_id = $school->id;
         return [
             "name" => $this->faker->name,
             "school_id" => $school_id,
