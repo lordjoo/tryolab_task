@@ -10,6 +10,7 @@ Route::group([],function () {
     });
 
     Route::group(["middleware"=>"auth:api"],function () {
+        Route::get("schools", [\App\Http\Controllers\Api\SchoolController::class,"index"]);
         Route::resource("/students",\App\Http\Controllers\Api\StudentController::class);
     });
 
