@@ -1,5 +1,10 @@
 # Troylab BK Task 
 
+## INFo 
+This task is done by using Laravel and Fillament as the Admin Panel Package  
+To access the admin panel go to ```http://localhost:8000/admin```   
+The default password for any user account ```password``` 
+
 ### Installation 
 ```
 composer install 
